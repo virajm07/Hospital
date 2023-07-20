@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Hospital.Models;
 
 namespace Hospital.Areas.Identity.Data;
 
@@ -19,4 +20,6 @@ public class HospitalContext : IdentityDbContext<HospitalUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+    public DbSet<Hospital.Models.Appointment> Appointment { get; set; } = default!;
 }
