@@ -22,4 +22,10 @@ public class HospitalContext : IdentityDbContext<HospitalUser>
     }
 
     public DbSet<Hospital.Models.Appointment> Appointment { get; set; } = default!;
+
+    public DbSet<Hospital.Models.Inventory> Inventory { get; set; } = default!;
+
+    public DbSet<Hospital.Models.Patient> Patient { get; set; } = default!;
+
+    public DbSet<Hospital.Models.Staff> Staff { get; set; } = default!;
 }
