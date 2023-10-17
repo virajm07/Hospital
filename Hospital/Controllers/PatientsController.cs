@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Areas.Identity.Data;
 using Hospital.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hospital.Controllers
 {
@@ -20,6 +21,7 @@ namespace Hospital.Controllers
         }
 
         // GET: Patients
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Patient != null ? 
@@ -58,7 +60,7 @@ namespace Hospital.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PatientID,FirstName,LastName,Address,ContactNumber,DOB,HealthConditions")] Patient patient)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(patient);
                 await _context.SaveChangesAsync();
@@ -95,7 +97,7 @@ namespace Hospital.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
