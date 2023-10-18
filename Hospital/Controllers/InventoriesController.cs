@@ -60,7 +60,7 @@ namespace Hospital.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("InventoryID,Supplies,Medications,Equipment,OrdersandEquipment,Stock")] Inventory inventory)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(inventory);
                 await _context.SaveChangesAsync();
@@ -97,7 +97,7 @@ namespace Hospital.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {

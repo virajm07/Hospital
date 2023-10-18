@@ -60,7 +60,7 @@ namespace Hospital.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AppointmentID,PatientFullName,StaffFullName,PatientID,StaffID,AppointmentRoom,AppointmentDate")] Appointment appointment)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
@@ -97,7 +97,7 @@ namespace Hospital.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
