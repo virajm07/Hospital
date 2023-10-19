@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospital.Models
 {
@@ -22,6 +23,7 @@ namespace Hospital.Models
         public string AppointmentRoom { get; set; }
 
         [DisplayName("Appointment Date")]
+        [DataType(DataType.Date)]
         public string AppointmentDate { get; set; }
     }
 }
