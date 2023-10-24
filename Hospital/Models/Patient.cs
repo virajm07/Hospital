@@ -22,7 +22,7 @@ namespace Hospital.Models
 
         [Required]
         [DisplayName("Contact Number")]
-        [RegularExpression("(^\\([0]\\d{2}\\))(\\d{6,7}$)",ErrorMessage ="Please enter a valid phone number format e.g. (021)1234567")]
+        [RegularExpression("((^\\([0]\\d{1}\\))(\\d{7}$)|(^\\([0][2]\\d{1}\\))(\\d{6,8}$)|([0][8][0][0])([\\s])(\\d{5,8}$))", ErrorMessage ="Please enter a valid phone number")]
         public string ContactNumber { get; set; }
 
         [Required]
