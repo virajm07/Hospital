@@ -22,8 +22,8 @@ namespace Hospital.Models
         [DisplayName("Appointment Room")]
         public string AppointmentRoom { get; set; }
 
-        [DisplayName("Appointment Date and Time")]
-        [DataType(DataType.DateTime)]
+        [DisplayName("Appointment Date")]
+        [DataType(DataType.Date)]
         public string AppointmentDate { get; set; }
     }
 }
