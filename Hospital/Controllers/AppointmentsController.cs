@@ -22,10 +22,39 @@ namespace Hospital.Controllers
 
         // GET: Appointments
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-              return _context.Appointment != null ? 
-                          View(await _context.Appointment.ToListAsync()) :
+            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "nameDesc" : "";
+            ViewData["DateSortParam"] = sortOrder == "date" ? "dateDesc" : "date";
+            ViewData["CurrentFilter"] = searchString;
+
+            var appointments = from s in _context.Appointment select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                appointments = appointments.Where(s => 
+                                                     s.PatientFullName.Contains(searchString) ||
+                                                     s.StaffFullName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "nameDesc":
+                    appointments = appointments.OrderByDescending(s => s.PatientFullName);
+                    break;
+                case "date":
+                    appointments = appointments.OrderBy(s => s.StaffFullName);
+                    break;
+                case "dateDesc":
+                    appointments = appointments.OrderByDescending(s => s.StaffFullName);
+                    break;
+                default:
+                    appointments = appointments.OrderBy(s => s.PatientFullName);
+                    break;
+            }
+
+            return _context.Appointment != null ?
+                        View(await appointments.AsNoTracking().ToListAsync()):
                           Problem("Entity set 'HospitalContext.Appointment'  is null.");
         }
 
