@@ -4,6 +4,7 @@ using Hospital.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital.Migrations
 {
     [DbContext(typeof(HospitalContext))]
-    partial class HospitalContextModelSnapshot : ModelSnapshot
+    [Migration("20231123010007_InitHospitalUser")]
+    partial class InitHospitalUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,8 +108,9 @@ namespace Hospital.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentID"));
 
-                    b.Property<DateTime>("AppointmentDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("AppointmentDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AppointmentRoom")
                         .IsRequired()
@@ -116,8 +120,9 @@ namespace Hospital.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientID")
-                        .HasColumnType("int");
+                    b.Property<string>("PatientID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StaffFullName")
                         .IsRequired()
@@ -128,8 +133,6 @@ namespace Hospital.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AppointmentID");
-
-                    b.HasIndex("PatientID");
 
                     b.ToTable("Appointment");
                 });
@@ -400,17 +403,6 @@ namespace Hospital.Migrations
                     b.ToTable("PatientStaff");
                 });
 
-            modelBuilder.Entity("Hospital.Models.Appointment", b =>
-                {
-                    b.HasOne("Hospital.Models.Patient", "Patient")
-                        .WithMany("Appointments")
-                        .HasForeignKey("PatientID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -475,11 +467,6 @@ namespace Hospital.Migrations
                         .HasForeignKey("StaffsStaffID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Hospital.Models.Patient", b =>
-                {
-                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

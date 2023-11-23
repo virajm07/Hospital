@@ -6,7 +6,7 @@ var connectionString = builder.Configuration.GetConnectionString("HospitalContex
 
 builder.Services.AddDbContext<HospitalContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<HospitalUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<HospitalContext>();
+builder.Services.AddDefaultIdentity<HospitalUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<HospitalContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

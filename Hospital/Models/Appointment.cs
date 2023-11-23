@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Contracts;
 
 namespace Hospital.Models
 {
@@ -14,7 +15,7 @@ namespace Hospital.Models
         public string StaffFullName { get; set; }
 
         [DisplayName("Patient ID")]
-        public string PatientID { get; set; }
+        public int PatientID { get; set; }
 
         [DisplayName("Staff ID")]
         public string StaffID { get; set; }
@@ -23,7 +24,9 @@ namespace Hospital.Models
         public string AppointmentRoom { get; set; }
 
         [DisplayName("Appointment Date")]
-        [DataType(DataType.Date)]
-        public string AppointmentDate { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime AppointmentDate { get; set; }
+
+        public Patient Patient { get; set; }
     }
 }

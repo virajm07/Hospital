@@ -34,5 +34,6 @@ namespace Hospital.Models
         public string HealthConditions { get; set; }
 
         public ICollection<Staff>Staffs { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

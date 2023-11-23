@@ -10,22 +10,24 @@ namespace Hospital.Models
         public int InventoryID { get; set; }
 
         [Required]
-        [DisplayName("Quantity")]
-        public string Supplies { get; set; }
+        [DisplayName("Quantity to Order")]
+        public int Supplies { get; set; }
 
         [Required]
         [DisplayName("Medication Name(s)")]
         public string Medications { get; set; }
 
         [Required]
-        [DisplayName("Equipment Required")]
+        [DisplayName("Equipment Required for Medication")]
         public string Equipment { get; set; }
 
         [Required]
-        [DisplayName("Orders")]
+        [DisplayName("Order Date")]
+        [DataType(DataType.Date)]
         public string OrdersandEquipment { get; set; }
 
         [Required]
+        [DisplayName("Stock in Hospital")]
         public string Stock { get; set; }
 
     }

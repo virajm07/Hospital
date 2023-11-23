@@ -13,7 +13,7 @@ namespace Hospital.Migrations
 {
     [DbContext(typeof(HospitalContext))]
     [Migration("20231018212224_update")]
-    partial class update
+    partial class Update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

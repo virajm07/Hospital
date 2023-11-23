@@ -19,7 +19,7 @@ namespace Hospital.Models
         [DataType(DataType.Date)]
         public string DOB { get; set; }
 
-        [DisplayName("Contact Number")]
+        [DisplayName("Contact Number (use format (000)000000)")]
         [RegularExpression("((^\\([0]\\d{1}\\))(\\d{7}$)|(^\\([0][2]\\d{1}\\))(\\d{6,8}$)|([0][8][0][0])([\\s])(\\d{5,8}$))", ErrorMessage = "Please enter a valid phone number")]
         public string ContactInfo { get; set; }
 
